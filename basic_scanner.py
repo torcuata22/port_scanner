@@ -13,10 +13,18 @@ def port_is_open(host, port):
     #create socket:
     s = socket.socket()
 
-    #connect to port, handle errors gracefully:
+    #connect to port, handle errors gracefully with try-except:
     try:
         s.connect((host, port))
     except:
         return False
     else:
         return True
+    
+host = input("Enter the host: ")
+for port in range(1, 1025):
+    if port_is_open(host, port):
+        print(f"{GREEN}[+] {host}:{port} is OPEN     {RESET}")
+    else:
+        print(f"{GRAY}[!] {host}:{port} is closed     {RESET}", end="\r")
+   
